@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CommandTable xmlns="http://schemas.microsoft.com/VisualStudio/2005-10-18/CommandTable" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <!--  This is the file that defines the actual layout and type of the commands.
+        It is divided in different sections (e.g. command definition, command
+        placement, ...), with each defining a specific set of properties.
+        See the comment before each section for more details about how to
+        use it. -->
+
+  <!--  The VSCT compiler (the tool that translates this file into the binary
+        format that VisualStudio will consume) has the ability to run a preprocessor
+        on the vsct file; this preprocessor is (usually) the C++ preprocessor, so
+        it is possible to define includes and macros with the same syntax used
+        in C++ files. Using this ability of the compiler here, we include some files
+        defining some of the constants that we will use inside the file. -->
+
+  <!--This is the file that defines the IDs for all the commands exposed by VisualStudio. -->
+  <Extern href="stdidcmd.h"/>
+
+  <!--This header contains the command ids for the menus provided by the shell. -->
+  <Extern href="vsshlids.h"/>
+
+  <!--The Commands section is where commands, menus, and menu groups are defined.
+      This section uses a Guid to identify the package that provides the command defined inside it. -->
+  <Commands package="guidPackage">
+    <!-- Inside this section we have different sub-sections: one for the menus, another
+    for the menu groups, one for the buttons (the actual commands), one for the combos
+    and the last one for the bitmaps used. Each element is identified by a command id that
+    is a unique pair of guid and numeric identifier; the guid part of the identifier is usually
+    called "command set" and is used to group different command inside a logically related
+    group; your package should define its own command set in order to avoid collisions
+    with command ids defined by other packages. -->
+
+    <!-- In this section you can define new menu groups. A menu group is a container for
+         other menus or buttons (commands); from a visual point of view you can see the
+         group as the part of a menu contained between two lines. The parent of a group
+         must be a menu. -->
+    <Groups>
+      <Group guid="guidToolWindowToolbarCmdSet" id="ToolWindowToolbarCmdGroup" priority="0x0000">
+        <Parent guid="guidToolWindowToolbarCmdSet" id="ToolWindowToolbar" />
+      </Group>
+    </Groups>
+
+    <!--Menus section. -->
+    <Menus>
+      <Menu guid="guidToolWindowToolbarCmdSet" id="ToolWindowToolbar" type="ToolWindowToolbar">
+        <CommandFlag>DefaultDocked</CommandFlag>
+        <Strings>
+          <ButtonText>Session Manager Button</ButtonText>
+          <CommandName>Session Manager Command</CommandName>
+        </Strings>
+      </Menu>
+    </Menus>
+
+
+
+    <!--Buttons section. -->
+    <!--This section defines the elements the user can interact with, like a menu command or a button
+        or combo box in a toolbar. -->
+    <Buttons>
+      <!--To define a menu group you have to specify its ID, the parent menu and its display priority.
+          The command is visible and enabled by default. If you need to change the visibility, status, etc, you can use
+          the CommandFlag node.
+          You can add more than one CommandFlag node e.g.:
+              <CommandFlag>DefaultInvisible</CommandFlag>
+              <CommandFlag>DynamicVisibility</CommandFlag>
+          If you do not want an image next to your command, remove the Icon node /> -->
+      <Button guid="guidPackageCmdSet" id="SessionManagerToolWindowCommandId" priority="0x0100" type="Button">
+        <Parent guid="guidSHLMainMenu" id="IDG_VS_WNDO_OTRWNDWS1"/>
+        <Icon guid="guidImages" id="bmpPicTabSave" />
+        <Strings>
+          <ButtonText>Session Manager</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="guidToolWindowToolbarCmdSet" id="SaveCurrentSession" priority="0x0200" type="Button">
+        <Parent guid="guidToolWindowToolbarCmdSet" id="ToolWindowToolbarCmdGroup"/>
+        <Icon guid="guidImages" id="bmpPicTabAdd" />
+        <CommandFlag>IconAndText</CommandFlag>
+        <Strings>
+          <CommandName>Save New Session</CommandName>
+          <ButtonText>Save New Session</ButtonText>
+          <MenuText>Save New Session</MenuText>
+          <ToolTipText>Save Open Documents to a New Session</ToolTipText>
+          <CanonicalName>SessionManager.ToolbarSaveCurrentSession</CanonicalName>
+          <LocCanonicalName>SessionManager.ToolbarSaveCurrentSession</LocCanonicalName>
+        </Strings>
+      </Button>
+
+      <Button guid="guidToolWindowToolbarCmdSet" id="RestoreSession" priority="0x0300" type="Button">
+        <Parent guid="guidToolWindowToolbarCmdSet" id="ToolWindowToolbarCmdGroup"/>
+        <Icon guid="guidImages" id="bmpPicTabRefresh" />
+        <CommandFlag>IconAndText</CommandFlag>
+        <Strings>
+          <CommandName>Restore Session</CommandName>
+          <ButtonText>Restore</ButtonText>
+          <MenuText>Restore Session</MenuText>
+          <ToolTipText>Restore and Close Other Open Documents</ToolTipText>
+          <CanonicalName>SessionManager.ToolbarRestoreSession</CanonicalName>
+          <LocCanonicalName>SessionManager.ToolbarRestoreSession</LocCanonicalName>
+        </Strings>
+      </Button>
+
+      <Button guid="guidToolWindowToolbarCmdSet" id="OpenSession" priority="0x0400" type="Button">
+        <Parent guid="guidToolWindowToolbarCmdSet" id="ToolWindowToolbarCmdGroup"/>
+        <Icon guid="guidImages" id="bmpPicTabOpenArrow" />
+        <CommandFlag>IconAndText</CommandFlag>
+        <Strings>
+          <CommandName>Open Session</CommandName>
+          <ButtonText>Open</ButtonText>
+          <MenuText>Open Session</MenuText>
+          <ToolTipText>Open Session Tabs</ToolTipText>
+          <CanonicalName>SessionManager.ToolbarOpenSession</CanonicalName>
+          <LocCanonicalName>SessionManager.ToolbarOpenSession</LocCanonicalName>
+        </Strings>
+      </Button>
+      
+      <Button guid="guidToolWindowToolbarCmdSet" id="DeleteSession" priority="0x0500" type="Button">
+        <Parent guid="guidToolWindowToolbarCmdSet" id="ToolWindowToolbarCmdGroup"/>
+        <Icon guid="guidImages" id="bmpPicDelete" />
+        <Strings>
+          <CommandName>Delete Session</CommandName>
+          <ButtonText>Delete Session</ButtonText>
+          <MenuText>Delete Session</MenuText>
+          <CanonicalName>SessionManager.ToolbarDeleteSession</CanonicalName>
+          <LocCanonicalName>SessionManager.ToolbarDeleteSession</LocCanonicalName>
+        </Strings>
+      </Button>
+    </Buttons>
+
+    <!--The bitmaps section is used to define the bitmaps that are used for the commands.-->
+    <Bitmaps>
+      <!--  The bitmap id is defined in a way that is a little bit different from the others:
+            the declaration starts with a guid for the bitmap strip, then there is the resource id of the
+            bitmap strip containing the bitmaps and then there are the numeric ids of the elements used
+            inside a button definition. An important aspect of this declaration is that the element id
+            must be the actual index (1-based) of the bitmap inside the bitmap strip. -->
+      <Bitmap guid="guidImages" href="Resources\icons.png" usedList="bmpPicTabSave, bmpPicOpenArrow, bmpPicRefresh, bmpPicDelete,
+                                                                     bmpPicTabHash, bmpPicTabDownArrow, bmpPicTabClose, bmpPicTabOpenArrow,
+                                                                     bmpPicTabSync, bmpPicTabUpArrow, bmpPicSave, bmpPicTabAdd, bmpPicTabRefresh,
+                                                                     bmpPicTabCloseBW, bmpPicTabOpenArrowBW, bmpPicTabSyncBW" /></Bitmaps>
+  </Commands>
+
+  <Symbols>
+    <!-- This is the package guid. -->
+    <GuidSymbol name="guidPackage" value="{b530e711-8043-49b5-b82d-7b94565cfc87}" />
+
+    <!-- This is the guid used to group the menu commands together -->
+    <GuidSymbol name="guidPackageCmdSet" value="{e5e58af2-0280-4a35-89ff-547922fb526f}">
+      <IDSymbol name="SessionManagerToolWindowCommandId" value="0x0100" />
+    </GuidSymbol>
+
+    <GuidSymbol name="guidToolWindowToolbarCmdSet" value="{b8dc732b-7c3f-46a0-ac12-93eff5e58c01}">
+      <IDSymbol name="ToolWindowToolbarCmdGroup" value="0x1020" />
+      <IDSymbol name="ToolWindowToolbar" value="0x0100" />
+      <IDSymbol name="SaveCurrentSession" value="0x0200" />
+      <IDSymbol name="RestoreSession" value="0x0300" />
+      <IDSymbol name="OpenSession" value="0x0400" />
+      <IDSymbol name="DeleteSession" value="0x0500" />
+    </GuidSymbol>
+
+    <GuidSymbol name="guidImages" value="{04748c78-be7b-4e7f-a8d2-8645a8461c36}" >
+      <IDSymbol name="bmpPicTabSave" value="1" />
+      <IDSymbol name="bmpPicOpenArrow" value="2" />
+      <IDSymbol name="bmpPicRefresh" value="3" />
+      <IDSymbol name="bmpPicDelete" value="4" />
+      <IDSymbol name="bmpPicTabHash" value="5" />
+      <IDSymbol name="bmpPicTabDownArrow" value="6" />
+      <IDSymbol name="bmpPicTabClose" value="7" />
+      <IDSymbol name="bmpPicTabOpenArrow" value="8" />
+      <IDSymbol name="bmpPicTabSync" value="9" />
+      <IDSymbol name="bmpPicTabUpArrow" value="10" />
+      <IDSymbol name="bmpPicSave" value="11" />
+      <IDSymbol name="bmpPicTabAdd" value="12" />
+      <IDSymbol name="bmpPicTabRefresh" value="13" />
+      <IDSymbol name="bmpPicTabCloseBW" value="14" />
+      <IDSymbol name="bmpPicTabOpenArrowBW" value="15" />
+      <IDSymbol name="bmpPicTabSyncBW" value="16" />
+    </GuidSymbol>
+  </Symbols>
+</CommandTable>

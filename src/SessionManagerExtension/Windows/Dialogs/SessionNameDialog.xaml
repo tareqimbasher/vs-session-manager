@@ -1,0 +1,52 @@
+﻿<Window x:Class="SessionManagerExtension.Dialogs.SessionNameDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Session"
+        Height="125"
+        Width="330"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        ShowInTaskbar="False"
+        xmlns:vsshell="clr-namespace:Microsoft.VisualStudio.Shell;assembly=Microsoft.VisualStudio.Shell.15.0"
+        xmlns:vs="clr-namespace:Microsoft.VisualStudio.PlatformUI;assembly=Microsoft.VisualStudio.Shell.15.0"
+        Background="{DynamicResource {x:Static vsshell:VsBrushes.WindowKey}}"
+        Foreground="{DynamicResource {x:Static vsshell:VsBrushes.WindowTextKey}}"
+        WindowStyle="None"
+        Topmost="True">
+
+    <Grid FocusManager.FocusedElement="{Binding ElementName=SessionNameTextbox}" Margin="16,20">
+
+        <Grid.Resources>
+            <Style TargetType="Label">
+                <Setter Property="Foreground" Value="{DynamicResource {x:Static vs:EnvironmentColors.ToolWindowTextBrushKey}}"/>
+            </Style>
+            <Style TargetType="TextBox">
+                <Setter Property="Foreground" Value="{DynamicResource {x:Static vs:EnvironmentColors.ToolWindowTextBrushKey}}"/>
+                <Setter Property="Background" Value="{DynamicResource {x:Static vs:EnvironmentColors.ToolWindowBackgroundBrushKey}}"/>
+            </Style>
+        </Grid.Resources>
+        
+        <TextBlock VerticalAlignment="Top">Session Name</TextBlock>
+
+        <TextBox x:Name="SessionNameTextbox" 
+                 Margin="0, 25, 0, 0" 
+                 HorizontalAlignment="Stretch" 
+                 VerticalAlignment="Top"
+                 KeyDown="SessionNameTextbox_KeyDown"></TextBox>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="Cancel" Margin="0,0,5,0" VerticalAlignment="Bottom" Click="OnCancel" HorizontalAlignment="Right" Width="75" IsCancel="True"/>
+            <Button Content="Confirm" VerticalAlignment="Bottom" Click="OnConfirm" HorizontalAlignment="Right" Width="75">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Text.Length, ElementName=SessionNameTextbox, UpdateSourceTrigger=PropertyChanged}" Value="0">
+                                <Setter Property="IsEnabled" Value="False"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,14 @@
+﻿Features yet to be developed:
+add document to session
+reorder documents
+
+Change description in vsixmanifest
+update preview screenshot
+search if there is any use including the preview pic inside the project
+include a link to VS Gallery in README
+
+
+https://marketplace.visualstudio.com/items?itemName=eamodio.SaveAlltheTabs
+https://github.com/eamodio/SaveAllTheTabs
+
+https://www.flaticon.com/free-icon/floppy_3567187?related_item_id=3566818&term=disk
