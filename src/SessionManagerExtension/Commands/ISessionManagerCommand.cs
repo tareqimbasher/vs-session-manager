@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 
 namespace SessionManagerExtension.Commands
 {
+
     public interface ISessionManagerCommand
     {
         Guid CommandSet { get; }

@@ -4,6 +4,9 @@ using System.Reflection;
 
 namespace SessionManagerExtension
 {
+    /// <summary>
+    /// Represents a named group of documents.
+    /// </summary>
     public class Session : NotifiesPropertyChanged
     {
         private Guid _id;

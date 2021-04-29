@@ -4,6 +4,9 @@ using System.Threading.Tasks;
 
 namespace SessionManagerExtension
 {
+    /// <summary>
+    /// Manages sessions
+    /// </summary>
     public interface ISessionManager
     {
         bool HasSolutionSettingsLoaded { get; }

@@ -98,6 +98,9 @@ namespace SessionManagerExtension.Windows.ToolWindows
             GridView gView = listView.View as GridView;
 
             var workingWidth = listView.ActualWidth - SystemParameters.VerticalScrollBarWidth;
+            if (workingWidth <= 0)
+                return;
+
             if (gView.Columns.Count == 1)
             {
                 gView.Columns[0].Width = workingWidth;

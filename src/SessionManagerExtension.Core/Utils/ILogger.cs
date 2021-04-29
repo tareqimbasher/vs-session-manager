@@ -4,6 +4,9 @@ using System.Text;
 
 namespace SessionManagerExtension.Utils
 {
+    /// <summary>
+    /// Logs messages.
+    /// </summary>
     public interface ILogger
     {
         void Debug(string message);

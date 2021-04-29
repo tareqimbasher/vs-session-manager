@@ -4,6 +4,9 @@ using System.Runtime.CompilerServices;
 
 namespace SessionManagerExtension
 {
+    /// <summary>
+    /// Base class for types that implement <see cref="INotifyPropertyChanged"/>
+    /// </summary>
     public abstract class NotifiesPropertyChanged : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler? PropertyChanged;

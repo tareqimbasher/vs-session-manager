@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 
 namespace SessionManagerExtension
 {
-
     public class SessionManager : NotifiesPropertyChanged, ISessionManager
     {
         private readonly ISettingsStore _settingsStore;

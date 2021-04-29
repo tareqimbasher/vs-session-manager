@@ -76,7 +76,7 @@ namespace SessionManagerExtension.DependencyInjection
         /// </summary>
         /// <param name="type">Type as registered with the container</param>
         /// <returns>Instance of the registered type, if registered; otherwise <see langword="null"/></returns>
-        public object GetService(Type type)
+        public object? GetService(Type type)
         {
             Func<ILifetime, object> registeredType;
 
@@ -252,7 +252,7 @@ namespace SessionManagerExtension.DependencyInjection
         /// <param name="factory">Factory method</param>
         /// <returns>IRegisteredType object</returns>
         public static Container.IRegisteredType Register<T>(this Container container, Func<T> factory)
-            => container.Register(typeof(T), () => factory());
+            => container.Register(typeof(T), () => factory()!);
 
         /// <summary>
         /// Registers a type

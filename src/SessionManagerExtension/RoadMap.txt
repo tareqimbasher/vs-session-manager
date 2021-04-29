@@ -1,4 +1,8 @@
 ﻿Features yet to be developed:
+Export/Import
+Copy Settings to clipboard as text or as a file
+Reveal in Explorer
+
 add document to session
 reorder documents
 

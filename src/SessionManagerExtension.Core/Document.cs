@@ -4,6 +4,9 @@ using System.Text;
 
 namespace SessionManagerExtension
 {
+    /// <summary>
+    /// Represents a document.
+    /// </summary>
     public class Document
     {
         public Document()

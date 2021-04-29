@@ -10,9 +10,12 @@ using System.Windows;
 
 namespace SessionManagerExtension.Settings
 {
+    /// <summary>
+    /// Retreives settings from JSON configuration files.
+    /// </summary>
     public class FileSettingsStore : ISettingsStore
     {
-        private const string _settingsFileName = ".sessionmanager.json";
+        private const string _solutionSettingsFileName = ".sessionmanager.json";
         private readonly IJsonSerializer _jsonSerializer;
         private readonly ILogger _logger;
 
@@ -22,8 +25,10 @@ namespace SessionManagerExtension.Settings
             _logger = logger;
         }
 
-        public async Task<SolutionSettings> GetSolutionSettingsAsync(string solutionFilePath)
+        public Task<SolutionSettings> GetSolutionSettingsAsync(string solutionFilePath)
         {
+            SolutionSettings settings;
+
             try
             {
                 var settingsFilePath = GetSettingsFilePath(solutionFilePath);
@@ -31,32 +36,30 @@ namespace SessionManagerExtension.Settings
 
                 if (!Directory.Exists(settingsFileDir) || !File.Exists(settingsFilePath))
                 {
-                    return SolutionSettings.Empty;
+                    settings = SolutionSettings.Empty;
                 }
                 else
                 {
-                    return _jsonSerializer.Deserialize<SolutionSettings>(File.ReadAllText(settingsFilePath));
+                    settings = _jsonSerializer.Deserialize<SolutionSettings>(File.ReadAllText(settingsFilePath));
                 }
             }
             catch (Exception ex)
             {
                 _logger.Error($"Error getting Session Manager settings for solution: \"{solutionFilePath}\". Details: {ex}");
-                return SolutionSettings.Empty;
+                settings = SolutionSettings.Empty;
             }
+
+            return Task.FromResult(settings);
         }
 
-        public async Task SaveSolutionSettingsAsync(string solutionFilePath, SolutionSettings settings)
+        public Task SaveSolutionSettingsAsync(string solutionFilePath, SolutionSettings settings)
         {
             try
             {
                 var settingsFilePath = GetSettingsFilePath(solutionFilePath);
                 var settingsFileDir = Path.GetDirectoryName(settingsFilePath);
 
-                if (!Directory.Exists(settingsFileDir))
-                {
-                    return;
-                }
-                else
+                if (Directory.Exists(settingsFileDir))
                 {
                     File.WriteAllText(settingsFilePath, _jsonSerializer.Serialize(settings));
                 }
@@ -65,11 +68,13 @@ namespace SessionManagerExtension.Settings
             {
                 _logger.ErrorAndShowPopupMessage($"Error saving Session Manager settings for solution: \"{solutionFilePath}\".", ex);
             }
+
+            return Task.CompletedTask;
         }
 
         private string GetSettingsFilePath(string solutionFilePath)
         {
-            return Path.Combine(Path.GetDirectoryName(solutionFilePath), _settingsFileName);
+            return Path.Combine(Path.GetDirectoryName(solutionFilePath), _solutionSettingsFileName);
         }
     }
 }

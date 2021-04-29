@@ -6,6 +6,9 @@ using System.Text;
 
 namespace SessionManagerExtension.Settings
 {
+    /// <summary>
+    /// Represents the configuration of a solution.
+    /// </summary>
     public class SolutionSettings
     {
         public SolutionSettings()
@@ -13,13 +16,14 @@ namespace SessionManagerExtension.Settings
             Sessions = new ObservableCollection<Session>();
         }
 
-        public SolutionSettings(IEnumerable<Session> sessions) : this()
-        {
-            Sessions = new ObservableCollection<Session>(sessions);
-        }
-
+        /// <summary>
+        /// List of Sessions for this solution.
+        /// </summary>
         public ObservableCollection<Session> Sessions { get; set; }
 
+        /// <summary>
+        /// An empty instance of <see cref="SolutionSettings"/>.
+        /// </summary>
         public static SolutionSettings Empty => new SolutionSettings();
     }
 }

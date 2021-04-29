@@ -56,12 +56,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SessionManagerPackage.cs" />
     <Compile Include="Settings\FileSettingsStore.cs" />
-    <Compile Include="Settings\VsSettingsStore.cs" />
     <Compile Include="Utils\DefaultLogger.cs" />
     <Compile Include="Utils\IDE.cs" />
     <Compile Include="Utils\IIDE.cs" />
     <Compile Include="Utils\PackageAccessor.cs" />
-    <Compile Include="Utils\UiThread.cs" />
     <Compile Include="Utils\VsOleStream.cs" />
     <Compile Include="Windows\Dialogs\SessionNameDialog.xaml.cs">
       <DependentUpon>SessionNameDialog.xaml</DependentUpon>
