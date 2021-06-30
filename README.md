@@ -9,7 +9,7 @@ Its always annoying when you switch context to work on something else. Its tough
 ---
 **Session Manager** adds a new tool window pane to Visual Studio: **View > Other Windows > Session Manager**
 
-![Saved Tabs Window](src/SessionManagerExtension/Resources/SessionManager-Preview.png?raw=true "Saved Tabs Window")
+![Saved Tabs Window](Preview.png?raw=true "Saved Tabs Window")
 
 ### Commands
 * **Save Current Session** - Saves a new session that captures the documents you currently have opened.
